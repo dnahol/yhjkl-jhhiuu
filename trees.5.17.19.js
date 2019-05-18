@@ -234,8 +234,52 @@ function balancedBst(nums) {
 //    output: [3, 5, 11, 10, 9, 12, 15, 17]
 //
 //
+// LeetCode 987. Vertical Order Traversal of a Binary Tree
+// This solution fails some tests in the case where two nodes are the same
+// height and vertical level
+var verticalTraversal = function(root) {
+    var queue = []
+    queue.push([root, 0, 0])
+    var results = {}
+    var min = 0
+    var max = 0
 
+    while(queue.length !== 0) {
+        let tuple = queue.shift()
+        let curr = tuple[0]
+        let x = tuple[1]
+        let y = tuple[2]
 
+        if(!results[x]) results[x] = []
+        let newTuple = [curr.val, y]
+
+        var len = results[x].length
+        let last = results[x][len - 1]
+        if(last && newTuple[1] === last[1] && newTuple[0] < last[0]) {
+            results[x].pop()
+            results[x].push(newTuple)
+            newTuple = last
+        }
+        results[x].push(newTuple)
+
+        if(x < min) min = x
+        if(x > max) max = x
+
+        if(curr.left) queue.push([curr.left, x-1, y-1])
+        if(curr.right) queue.push([curr.right, x+1, y-1])
+    }
+
+    var final = []
+    for(var i = min; i <= max; i++) {
+        let len = results[i].length
+        for(var j = 0; j < len; j++){
+            results[i][j] = results[i][j][0]
+        }
+        final.push(results[i])
+    }
+
+    return final
+};
 
 
 // **************
