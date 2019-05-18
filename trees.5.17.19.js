@@ -197,8 +197,22 @@ iterator.hasNext() // return false
 //   this.right = null;
 // }
 //
-function balancedBst(array) {
-  
+function balancedBst(nums) {
+  var start = 0
+  var end = nums.length - 1
+  var result = null
+
+  function traverse(start, end) {
+      if(start > end) return null
+      var mid = Math.floor(start + (end - start) / 2)
+      var root = new TreeNode(nums[mid])
+      root.left = traverse(start, mid-1)
+      root.right = traverse(mid+1, end)
+
+      return root
+
+  }
+  return traverse(start, end)
 }
 //
 // 4) Given a sorted binary tree, return the vertical order traversal of its nodes' values.
@@ -220,7 +234,10 @@ function balancedBst(array) {
 //    output: [3, 5, 11, 10, 9, 12, 15, 17]
 //
 //
-//
+
+
+
+
 // **************
 // * Solution (copy and paste your solution here with your name on it)
 // **************
