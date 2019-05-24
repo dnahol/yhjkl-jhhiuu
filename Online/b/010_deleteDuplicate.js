@@ -25,6 +25,25 @@ Output: 5
 Output: 8
 */
 
+function deleteDuplicate(nums) {
+  if (nums.length === 0) return 0;
+
+  let writeIndex = 1;
+
+  for (let i = 0, l = nums.length; i < l; i++) {
+    if (nums[writeIndex - 1] != nums[i]) {
+      nums[writeIndex] = nums[i];
+      writeIndex += 1;	    
+    }
+  }	
+  return writeIndex;
+}
+
+console.log(deleteDuplicate([1,1,2,3,4,5,5]))
+console.log("Output: 5")
+
+console.log(deleteDuplicate([5,6,7,11,11,11,20,21,21,21,22,23]))
+console.log("Output: 8")
 
 /*
 A simple approach is by traversing the array and store the elements in a set. A set will store only unique elements. At the
