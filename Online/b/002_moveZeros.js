@@ -12,12 +12,17 @@ function moveZeros(nums) {
   let nonZeroWriteIndex = 0;
   let l = nums.length;
 
+// traverse the array and check the element
   for (let i = 0; i < l; i++) {
     if (nums[i] !== 0) {
       nums[nonZeroWriteIndex] = nums[i];
       nonZeroWriteIndex++;
     }
   }
+
+// At this point, all non-zero elements have been
+// shifted to the head of the array
+
   while (nonZeroWriteIndex < l) {
     nums[nonZeroWriteIndex] = 0;
     nonZeroWriteIndex++;

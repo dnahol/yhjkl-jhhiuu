@@ -20,6 +20,7 @@ Output: 55 (binary is 110111)
 function swapBits(x, i, j) {
   let bitMask = 0;
 
+// if the value at bit positions i and j differ
   if (((x >> i) & 1) !== ((x >> j) & 1)) {
     bitMask = 1 << i | 1 << j;
     x ^= bitMask;

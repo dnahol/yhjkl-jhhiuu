@@ -28,12 +28,14 @@ function divide(x, y) {
   let origY = y;
   let i = 0;
 
+  // this is to reduce the x (divident) by y (divisor)
   while(x > (y << i)) {
     x = x - (y << i);
     quotient = quotient + (1 << i);
     i++;
   }
 
+  // deduct the remaining x value one at a time
   while (x >= origY) {
     x = x - origY;
     quotient++;

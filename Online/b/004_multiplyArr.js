@@ -1,6 +1,6 @@
-/* Given two arrays of numbers, where each array is a representation of decimal number. Multiply them and return the result in an array.
-
-
+/* Given two arrays of numbers, where each array is a
+representation of decimal number. Multiply them and
+return the result in an array.
 
 Example:
 
@@ -47,7 +47,7 @@ function multiplyArr(arr1, arr2) {
   }	
   result.reverse()
 
-
+// remove the leading zeros
   let i = 0;
   for (let l = result.length - 1; i < l; i++) {
     if (result[i] !== 0) {
@@ -55,6 +55,7 @@ function multiplyArr(arr1, arr2) {
     }
   }
 
+// return the non-zero elements starting from i
   result = result.slice(i);
 
   if (isNegative) {
