@@ -121,7 +121,6 @@ console.log(countWays3(9))
 console.log(countWays3(10))
 
 
-
 // Cracking the Coding Interview 
 
 // Question 8.1 
@@ -163,9 +162,17 @@ price    | 1   5   8   9  10  17  17  20
 
 Can you come up with three approaches - recursion (brute force), top-down dynamic 
 programming (memoization), bottom-up dynamic programming?
-*/
 
-const prices = [1, 5, 8, 9, 10, 17, 17, 20]
+
+[ 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 ]
+
+8 individual pieces or whole rod => $20
+1, 7 => $1 + $17 => $18
+2, 6 => $5 + $17 => $22 max profit
+3, 5
+4, 4
+5, 3 ...
+*/
 
 // Recursion/Memomization/Top Down
 
@@ -183,10 +190,25 @@ const prices = [1, 5, 8, 9, 10, 17, 17, 20]
 
 
 
+// 15.1 Intro to algorithms MIT
 
 
+const prices = [1, 5, 8, 9, 10, 17, 17, 20];
 
+// Attempt 1
+function cutRod1(array, n) {
+  if (n === 0) return 0
+  let maxProfit = -Infinity 
+  for (let i = 1; i <= n; i++) {
+    maxProfit = Math.max(maxProfit, array[i -1] + cutRod1(array, n - i))
+  }
+  return maxProfit
+}
 
+console.log(cutRod1(prices, 0))
+console.log("=========")
+console.log(cutRod1(prices, 8), 22)
+// 22
 
 
 
@@ -243,11 +265,23 @@ getMax(values); */
 
 const values = [6, 1, 2, 7];
 
-//function getMax(values) {
+function getMax(prices) {
+  if (prices.length === 0) return 0
+  if (prices.length === 1) return prices[0]
+  if (prices.length === 2) return Math.max(prices[0], prices[1])
 
-//}
+  const dp = []
 
+  dp[0] = prices[0]
+  dp[1] = Math.max(prices[0], prices[1])
+ 
+  for (let i = 2; i < prices.length; i++) {
+    dp[i] = Math.max(dp[i - 1], dp[i - 2] + prices[i])
+  }
+  return dp[prices.length - 1];
+}
 
+console.log(getMax(values));
 
 
 
