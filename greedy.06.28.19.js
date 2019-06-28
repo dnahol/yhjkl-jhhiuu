@@ -108,13 +108,14 @@ Hint: think about extremal points.
 */
 
 console.log("---makeChange---")
+console.log(" ")
 
 function makeChange(cents) {
   let count = 0;
   let coins = [100, 50, 25, 10, 5, 1];
   // your code here
-  for (let i = 0; i < cents.length; i++) {
-    if (cents % cents[i] === 0) {
+  for (let i = 0; i < coins.length; i++) {
+    if (cents % coins[i] === 0) {	  
       count++;
     } 
   }
@@ -125,8 +126,8 @@ function makeBrit(cents) {
   let count = 0;
   let coins = [30, 24, 12, 6, 3, 1]
 
-  for (let i = 0; i < cents.length; i++) {
-    if (cents % cents[i] === 0) {
+  for (let i = 0; i < coins.length; i++) {
+    if (cents % coins[i] === 0) {	  
       count++;
     }
   }
@@ -146,7 +147,7 @@ let optimum = [];
 
   for (let i = 0; i < tasks.length; i++) {
     for (let j = i + 1; j < tasks.length; j++) {
-      if (tasks[i] + tasks[j] === 8) {
+      if (tasks[i] + tasks[j] === 8 || 7) {
         optimum.push([tasks[i],tasks[j]])	  
       }
     }
